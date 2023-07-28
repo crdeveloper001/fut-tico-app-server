@@ -2,7 +2,6 @@ package com.example.futticoappserver.Services;
 
 import com.example.futticoappserver.Interfaces.IUsersProfiles;
 import com.example.futticoappserver.Models.UsersProfiles;
-import com.example.futticoappserver.Repositories.TournamentsRepositories;
 import com.example.futticoappserver.Repositories.UsersProfilesRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +12,7 @@ import java.util.UUID;
 @Service
 public class UserProfilesServices implements IUsersProfiles {
 
+    @Autowired
     private UsersProfilesRepositories repositories;
 
     @Override
@@ -21,18 +21,18 @@ public class UserProfilesServices implements IUsersProfiles {
     }
 
     @Override
-    public List<UsersProfiles> SearchTournamentsByRol(String rol) {
-        return repositories.FilterByRol(rol);
+    public List<UsersProfiles> SearchTournamentsByRol(String userRol) {
+        return repositories.FilterByRol(userRol);
     }
 
     @Override
     public UsersProfiles AddNewProfiles(UsersProfiles profile) {
         try{
-            if (repositories.existsById(profile.getUserId())) {
-                profile.setUserId(UUID.randomUUID().toString());
-                repositories.saveAndFlush(profile);
+            if (repositories.existsById(profile.getId())) {
+                profile.setId(UUID.randomUUID().toString());
+                repositories.save(profile);
                 return profile;
-            }else if(!repositories.existsById(profile.getUserId())){
+            }else if(!repositories.existsById(profile.getId())){
                 return null;
             }else{
                 return null;
@@ -45,10 +45,10 @@ public class UserProfilesServices implements IUsersProfiles {
     @Override
     public UsersProfiles UpdateCurrentProfile(UsersProfiles update) {
         try{
-            if (repositories.existsById(update.getUserId())) {
-                repositories.saveAndFlush(update);
+            if (repositories.existsById(update.getId())) {
+                repositories.save(update);
                 return update;
-            }else if(!repositories.existsById(update.getUserId())){
+            }else if(!repositories.existsById(update.getId())){
                 return null;
             }else{
                 return null;

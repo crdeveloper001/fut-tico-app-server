@@ -2,7 +2,6 @@ package com.example.futticoappserver.Services;
 
 import com.example.futticoappserver.Interfaces.ITournaments;
 import com.example.futticoappserver.Models.Tournaments;
-import com.example.futticoappserver.Repositories.ReservationsRepositories;
 import com.example.futticoappserver.Repositories.TournamentsRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +11,7 @@ import java.util.UUID;
 @Service
 public class TournamentsServices implements ITournaments {
 
+    @Autowired
     private TournamentsRepositories repositories;
 
     @Override
@@ -37,12 +37,12 @@ public class TournamentsServices implements ITournaments {
     public Tournaments AddNewTournaments(Tournaments tournaments) {
 
         try{
-            if (repositories.existsById(tournaments.getTournamentId())) {
+            if (repositories.existsById(tournaments.getId())) {
 
-                tournaments.setTournamentId(UUID.randomUUID().toString());
-                repositories.saveAndFlush(tournaments);
+                tournaments.setId(UUID.randomUUID().toString());
+                repositories.save(tournaments);
                 return tournaments;
-            }else if(!repositories.existsById(tournaments.getTournamentId())){
+            }else if(!repositories.existsById(tournaments.getId())){
                 return null;
             }else{
                 return null;
@@ -55,10 +55,10 @@ public class TournamentsServices implements ITournaments {
     @Override
     public Tournaments UpdateCurrentTournaments(Tournaments update) {
         try{
-            if (repositories.existsById(update.getTournamentId())) {
-                repositories.saveAndFlush(update);
+            if (repositories.existsById(update.getId())) {
+                repositories.save(update);
                 return update;
-            }else if(!repositories.existsById(update.getTournamentId())){
+            }else if(!repositories.existsById(update.getId())){
                 return null;
             }else{
                 return null;

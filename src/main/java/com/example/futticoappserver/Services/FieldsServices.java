@@ -3,8 +3,8 @@ package com.example.futticoappserver.Services;
 import com.example.futticoappserver.Interfaces.IFields;
 import com.example.futticoappserver.Models.Fields;
 import com.example.futticoappserver.Repositories.FieldsRepositories;
-import jakarta.annotation.Resource;
-import org.springframework.stereotype.Component;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +12,9 @@ import java.util.UUID;
 
 @Service
 public class FieldsServices implements IFields {
-    private final FieldsRepositories field_repositories;
+
+    @Autowired
+    private FieldsRepositories field_repositories;
 
     public FieldsServices(FieldsRepositories _repositories) {
         this.field_repositories = _repositories;
@@ -34,7 +36,7 @@ public class FieldsServices implements IFields {
 
         try{
             if (field != null){
-                field.setFieldId(UUID.randomUUID().toString());
+                field.setId(UUID.randomUUID().toString());
                 field_repositories.save(field);
                 return field;
             }
@@ -49,10 +51,10 @@ public class FieldsServices implements IFields {
 
         try{
 
-            if (field_repositories.existsById(update.getFieldId())) {
-                field_repositories.saveAndFlush(update);
+            if (field_repositories.existsById(update.getId())) {
+                field_repositories.save(update);
                 return update;
-            } else if (!field_repositories.existsById(update.getFieldId())) {
+            } else if (!field_repositories.existsById(update.getId())) {
                 return null;
             }else {
                 return null;

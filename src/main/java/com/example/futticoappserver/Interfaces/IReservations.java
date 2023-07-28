@@ -1,6 +1,5 @@
 package com.example.futticoappserver.Interfaces;
 
-import com.example.futticoappserver.Models.Fields;
 import com.example.futticoappserver.Models.Reservations;
 
 import java.util.List;

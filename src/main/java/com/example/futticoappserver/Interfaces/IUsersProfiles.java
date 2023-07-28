@@ -1,6 +1,6 @@
 package com.example.futticoappserver.Interfaces;
 
-import com.example.futticoappserver.Models.Tournaments;
+
 import com.example.futticoappserver.Models.UsersProfiles;
 
 import java.util.List;

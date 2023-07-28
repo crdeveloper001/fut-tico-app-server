@@ -2,7 +2,6 @@ package com.example.futticoappserver.Services;
 
 import com.example.futticoappserver.Interfaces.IReservations;
 import com.example.futticoappserver.Models.Reservations;
-import com.example.futticoappserver.Repositories.FieldsRepositories;
 import com.example.futticoappserver.Repositories.ReservationsRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,31 +11,32 @@ import java.util.UUID;
 
 @Service
 public class ReservationsServices implements IReservations {
-
-    private ReservationsRepositories repositories;
+    
+    @Autowired
+    private ReservationsRepositories reservationsRepositories;
 
 
     @Override
     public List<Reservations> GetAllCurrentReservation() {
-        return repositories.findAll();
+        return reservationsRepositories.findAll();
     }
 
     @Override
     public List<Reservations> SearchReservationByGameType(String game) {
-        return repositories.FilterByGameType(game);
+        return reservationsRepositories.FilterByGameType(game);
     }
 
     @Override
     public List<Reservations> SearchReservationByFieldType(String field) {
-        return repositories.FilterByFieldType(field);
+        return reservationsRepositories.FilterByFieldType(field);
     }
 
     @Override
     public Reservations AddNewReservation(Reservations reservation) {
        try{
            if (reservation == null) {
-               reservation.setReservationId(UUID.randomUUID().toString());
-               repositories.save(reservation);
+               reservation.setId(UUID.randomUUID().toString());
+               reservationsRepositories.save(reservation);
                return reservation;
            }
            return null;
@@ -49,7 +49,7 @@ public class ReservationsServices implements IReservations {
     public Reservations UpdateCurrentReservation(Reservations update) {
         try{
             if (update == null) {
-                repositories.save(update);
+                reservationsRepositories.save(update);
                 return update;
             }
             return null;
@@ -62,7 +62,7 @@ public class ReservationsServices implements IReservations {
     public String DeleteReservationSelected(String reservationId) {
         try{
             if (reservationId == null) {
-                repositories.deleteById(reservationId);
+                reservationsRepositories.deleteById(reservationId);
                 return "Reserva eliminada";
             }
             return "Error al eliminar reserva la reserva: "+reservationId;
