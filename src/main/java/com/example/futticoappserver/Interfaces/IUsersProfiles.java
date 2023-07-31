@@ -8,7 +8,7 @@ import java.util.List;
 public interface IUsersProfiles {
 
     List<UsersProfiles> GetAllCurrentProfiles();
-    List<UsersProfiles> SearchTournamentsByRol(String rol);
+    List<UsersProfiles> SearchUsersByRolType(String rol);
     UsersProfiles AddNewProfiles(UsersProfiles profile);
     UsersProfiles UpdateCurrentProfile(UsersProfiles update);
     String DeleteProfileSelected(String profileId);

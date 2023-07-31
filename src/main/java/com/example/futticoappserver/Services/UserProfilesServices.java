@@ -21,7 +21,7 @@ public class UserProfilesServices implements IUsersProfiles {
     }
 
     @Override
-    public List<UsersProfiles> SearchTournamentsByRol(String userRol) {
+    public List<UsersProfiles> SearchUsersByRolType(String userRol) {
         return repositories.FilterByRol(userRol);
     }
 
