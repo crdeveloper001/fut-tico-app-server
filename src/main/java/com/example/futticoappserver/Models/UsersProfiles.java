@@ -1,6 +1,5 @@
 package com.example.futticoappserver.Models;
 
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -13,21 +12,16 @@ import lombok.Setter;
 @NoArgsConstructor
 @Document(collection = "UserProfiles")
 public class UsersProfiles {
-  
-   @Id
+
+    @Id
     private String id;
-
+    private String userName;
     private String userLastName;
-
     private Integer userPhone;
-  
     private String userEmail;
-    
-    private String userPassword;
-
+    private String userAccount;
+    private String userAccountPassword;
     private String userRol;
-   
-
-
+    private boolean userActive;
 
 }

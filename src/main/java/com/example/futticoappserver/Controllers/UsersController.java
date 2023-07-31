@@ -15,10 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.futticoappserver.Models.Fields;
 import com.example.futticoappserver.Models.UsersProfiles;
-import com.example.futticoappserver.Services.FieldsServices;
 import com.example.futticoappserver.Services.UserProfilesServices;
 
 @RestController
@@ -28,26 +25,26 @@ public class UsersController {
     @Autowired
     private UserProfilesServices users_service;
 
-    @GetMapping("/GetAllProfiles")
+    @GetMapping("/GetAllUsersProfiles")
     @ResponseBody
-    public ResponseEntity<List<UsersProfiles>> GetAllFields(){
+    public ResponseEntity<List<UsersProfiles>> GetAllUsers(){
         return new ResponseEntity<>(users_service.GetAllCurrentProfiles(), HttpStatus.OK);
 
     }
     @GetMapping("/SearchByRolType/{rol}")
-    public List<UsersProfiles> GetAllProfilesByRol(@PathVariable("rol") String rol){
+    public List<UsersProfiles> GetAllUsersProfilesByRol(@PathVariable("rol") String rol){
         return users_service.SearchUsersByRolType(rol);
     }
-    @PostMapping("/NewProfile")
-    public UsersProfiles PostField(@RequestBody UsersProfiles field){
-        return users_service.AddNewProfiles(field);
+    @PostMapping("/NewUserProfile")
+    public UsersProfiles PostUser(@RequestBody UsersProfiles user) throws Exception{
+        return users_service.AddNewProfiles(user);
     }
     @PutMapping("/UpdateProfile")
-    public UsersProfiles PutField(@RequestBody UsersProfiles update){
+    public UsersProfiles PutUser(@RequestBody UsersProfiles update){
         return users_service.UpdateCurrentProfile(update);
     }
     @DeleteMapping("/DeleteProfile/{id}")
-    public String DeleteField(@PathVariable("id") String id){
+    public String DeleteProfile(@PathVariable("id") String id){
         return users_service.DeleteProfileSelected(id);
     }
 

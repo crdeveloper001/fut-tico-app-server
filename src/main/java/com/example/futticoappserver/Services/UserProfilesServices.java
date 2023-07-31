@@ -17,7 +17,7 @@ public class UserProfilesServices implements IUsersProfiles {
 
     @Override
     public List<UsersProfiles> GetAllCurrentProfiles() {
-       return repositories.findAll();
+        return repositories.findAll();
     }
 
     @Override
@@ -26,17 +26,15 @@ public class UserProfilesServices implements IUsersProfiles {
     }
 
     @Override
-    public UsersProfiles AddNewProfiles(UsersProfiles profile) {
+    public UsersProfiles AddNewProfiles(UsersProfiles profile) throws Exception {
         try{
-            if (repositories.existsById(profile.getId())) {
-                profile.setId(UUID.randomUUID().toString());
+           if (profile.equals(null) || profile.getId().equals("")) {
+            profile.setId(UUID.randomUUID().toString());
                 repositories.save(profile);
                 return profile;
-            }else if(!repositories.existsById(profile.getId())){
-                return null;
-            }else{
-                return null;
-            }
+           }else{
+            throw new Exception("DATOS INVALIDOS");
+           }
         }catch (Exception error){
             throw error;
         }
@@ -44,32 +42,32 @@ public class UserProfilesServices implements IUsersProfiles {
 
     @Override
     public UsersProfiles UpdateCurrentProfile(UsersProfiles update) {
-        try{
+        try {
             if (repositories.existsById(update.getId())) {
                 repositories.save(update);
                 return update;
-            }else if(!repositories.existsById(update.getId())){
+            } else if (!repositories.existsById(update.getId())) {
                 return null;
-            }else{
+            } else {
                 return null;
             }
-        }catch (Exception error){
+        } catch (Exception error) {
             throw error;
         }
     }
 
     @Override
     public String DeleteProfileSelected(String profileId) {
-        try{
+        try {
             if (repositories.existsById(profileId)) {
                 repositories.deleteById(profileId);
                 return "Usuario Eliminado";
-            }else if(!repositories.existsById(profileId)){
+            } else if (!repositories.existsById(profileId)) {
                 return "Usuario no existe";
-            }else{
+            } else {
                 return "No se pudo eliminar el usuario o no existe";
             }
-        }catch (Exception error){
+        } catch (Exception error) {
             return error.getMessage();
         }
     }
