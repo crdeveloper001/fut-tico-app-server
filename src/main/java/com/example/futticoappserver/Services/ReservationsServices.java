@@ -34,7 +34,7 @@ public class ReservationsServices implements IReservations {
     @Override
     public Reservations AddNewReservation(Reservations reservation) {
        try{
-           if (reservation == null) {
+           if (reservation == null || reservation.getId().equals("")) {
                reservation.setId(UUID.randomUUID().toString());
                reservationsRepositories.save(reservation);
                return reservation;

@@ -2,18 +2,21 @@ package com.example.futticoappserver.Controllers;
 
 import com.example.futticoappserver.Models.Fields;
 import com.example.futticoappserver.Services.FieldsServices;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @CrossOrigin(origins = "*",allowedHeaders = "*")
 @RequestMapping("/api/v1/Fields")
 public class FieldsController {
 
+    @Autowired
     private FieldsServices field_service;
 
     @GetMapping("/GetAllField")
