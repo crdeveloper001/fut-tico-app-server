@@ -37,16 +37,16 @@ public class TournamentsServices implements ITournaments {
     public Tournaments AddNewTournaments(Tournaments tournaments) {
 
         try{
-            if (repositories.existsById(tournaments.getId())) {
-
+            
+            if (tournaments != null) {
                 tournaments.setId(UUID.randomUUID().toString());
                 repositories.save(tournaments);
+
                 return tournaments;
-            }else if(!repositories.existsById(tournaments.getId())){
-                return null;
-            }else{
-                return null;
             }
+            return null;
+
+
         }catch (Exception error){
             throw error;
         }

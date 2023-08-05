@@ -5,6 +5,7 @@ import com.example.futticoappserver.Services.FieldsServices;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "*",allowedHeaders = "*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/v1/Fields")
 public class FieldsController {
 
@@ -21,26 +22,33 @@ public class FieldsController {
 
     @GetMapping("/GetAllField")
     @ResponseBody
-    public ResponseEntity<List<Fields>> GetAllFields(){
+    public ResponseEntity<List<Fields>> GetAllFields() {
         return new ResponseEntity<>(field_service.GetAllCurrentFields(), HttpStatus.OK);
 
     }
+
     @GetMapping("/SearchByLocation/{location}")
-    public List<Fields> GetAllFieldsLocation(@PathVariable("location") String location){
-        return field_service.SearchFieldByLocation(location);
-    }
+    public ResponseEntity<List<Fields>> GetAllFieldsLocation(@PathVariable("location") String location) {
+
+        if (field_service.SearchFieldByLocation(location).size() == 0) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        } 
+         return new ResponseEntity<List<Fields>>(field_service.SearchFieldByLocation(location), HttpStatus.OK);
+    };
+
     @PostMapping("/NewField")
-    public Fields PostField(@RequestBody Fields field){
+    public Fields PostField(@RequestBody Fields field) {
         return field_service.AddNewField(field);
     }
+
     @PutMapping("/UpdateField")
-    public Fields PutField(@RequestBody Fields update){
+    public Fields PutField(@RequestBody Fields update) {
         return field_service.UpdateCurrentField(update);
     }
+
     @DeleteMapping("/DeleteField/{id}")
-    public String DeleteField(@PathVariable("id") String id){
+    public String DeleteField(@PathVariable("id") String id) {
         return field_service.DeleteFieldSelected(id);
     }
-
 
 }

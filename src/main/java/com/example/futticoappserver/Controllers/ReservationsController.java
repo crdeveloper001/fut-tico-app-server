@@ -32,11 +32,11 @@ public class ReservationsController {
 
     }
     @GetMapping("/SearchByGameType/{game}")
-    public List<Reservations> GetAllReservationsGameType(@PathVariable("location") String game){
+    public List<Reservations> GetAllReservationsGameType(@PathVariable("game") String game){
         return reservations_Services.SearchReservationByFieldType(game);
     }
       @GetMapping("/SearchByFieldType/{field}")
-    public List<Reservations> GetAllReservationsFieldType(@PathVariable("location") String field){
+    public List<Reservations> GetAllReservationsFieldType(@PathVariable("field") String field){
         return reservations_Services.SearchReservationByFieldType(field);
     }
     @PostMapping("/NewReservation")

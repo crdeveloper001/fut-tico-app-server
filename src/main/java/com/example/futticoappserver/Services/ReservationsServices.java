@@ -11,10 +11,9 @@ import java.util.UUID;
 
 @Service
 public class ReservationsServices implements IReservations {
-    
+
     @Autowired
     private ReservationsRepositories reservationsRepositories;
-
 
     @Override
     public List<Reservations> GetAllCurrentReservation() {
@@ -33,40 +32,43 @@ public class ReservationsServices implements IReservations {
 
     @Override
     public Reservations AddNewReservation(Reservations reservation) {
-       try{
-           if (reservation == null || reservation.getId().equals("")) {
-               reservation.setId(UUID.randomUUID().toString());
-               reservationsRepositories.save(reservation);
-               return reservation;
-           }
-           return null;
-       }catch (Exception error){
-           throw error;
-       }
+        try {
+            if (reservation != null || reservation.getId().equals("")) {
+                reservation.setId(UUID.randomUUID().toString());
+                reservationsRepositories.save(reservation);
+                return reservation;
+            }
+            return null;
+        } catch (Exception error) {
+            throw error;
+        }
     }
 
     @Override
     public Reservations UpdateCurrentReservation(Reservations update) {
-        try{
+        try {
             if (update == null) {
                 reservationsRepositories.save(update);
                 return update;
             }
             return null;
-        }catch (Exception error){
+        } catch (Exception error) {
             throw error;
         }
     }
 
     @Override
     public String DeleteReservationSelected(String reservationId) {
-        try{
-            if (reservationId == null) {
+        try {
+            if (reservationsRepositories.existsById(reservationId)) {
                 reservationsRepositories.deleteById(reservationId);
                 return "Reserva eliminada";
+            } else if (!reservationsRepositories.existsById(reservationId)) {
+                return "La reserva no existe, intente de nuevo";
             }
-            return "Error al eliminar reserva la reserva: "+reservationId;
-        }catch (Exception error){
+            return "Ocurrio un error al consultar la reserva, puede que haya sido eliminada o no existe";
+
+        } catch (Exception error) {
             throw error;
         }
     }

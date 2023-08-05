@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.repository.Query;
 import java.util.List;
 
 public interface FieldsRepositories extends MongoRepository <Fields,String> {
-    @Query("{fieldName:'?0'}")
-    List<Fields> FilterByLocationField(String fieldName);
+    @Query("{fieldLocation:'?0'}")
+    List<Fields> FilterByLocationField(String fieldLocation);
 
 }

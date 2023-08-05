@@ -19,7 +19,7 @@ import com.example.futticoappserver.Models.UsersProfiles;
 import com.example.futticoappserver.Services.UserProfilesServices;
 
 @RestController
-@CrossOrigin(origins = "*",allowedHeaders = "*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/v1/Users")
 public class UsersController {
     @Autowired
@@ -27,24 +27,33 @@ public class UsersController {
 
     @GetMapping("/GetAllUsersProfiles")
     @ResponseBody
-    public ResponseEntity<List<UsersProfiles>> GetAllUsers(){
+    public ResponseEntity<List<UsersProfiles>> GetAllUsers() {
         return new ResponseEntity<>(users_service.GetAllCurrentProfiles(), HttpStatus.OK);
 
     }
+
     @GetMapping("/SearchByRolType/{rol}")
-    public List<UsersProfiles> GetAllUsersProfilesByRol(@PathVariable("rol") String rol){
-        return users_service.SearchUsersByRolType(rol);
+    public ResponseEntity<List<UsersProfiles>> GetAllUsersProfilesByRol(@PathVariable("rol") String rol) {
+
+        if (users_service.SearchUsersByRolType(rol).size() == 0) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<List<UsersProfiles>>(users_service.SearchUsersByRolType(rol), HttpStatus.OK);
     }
+
     @PostMapping("/NewUserProfile")
-    public UsersProfiles PostUser(@RequestBody UsersProfiles user) throws Exception{
+    public UsersProfiles PostUser(@RequestBody UsersProfiles user) throws Exception {
         return users_service.AddNewProfiles(user);
     }
+
     @PutMapping("/UpdateProfile")
-    public UsersProfiles PutUser(@RequestBody UsersProfiles update){
+    public UsersProfiles PutUser(@RequestBody UsersProfiles update) {
         return users_service.UpdateCurrentProfile(update);
     }
+
     @DeleteMapping("/DeleteProfile/{id}")
-    public String DeleteProfile(@PathVariable("id") String id){
+    public String DeleteProfile(@PathVariable("id") String id) {
         return users_service.DeleteProfileSelected(id);
     }
 
