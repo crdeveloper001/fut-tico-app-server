@@ -3,8 +3,10 @@ package com.example.futticoappserver.Repositories;
 import com.example.futticoappserver.Models.Tournaments;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
+@Repository
 public interface TournamentsRepositories extends MongoRepository<Tournaments,String> {
     @Query("{tournamentLocation:'?0'}")
     List<Tournaments> FilterByLocation(String tournamentLocation);

@@ -13,22 +13,23 @@ import java.util.UUID;
 @Service
 public class FieldsServices implements IFields {
 
-    @Autowired
-    private FieldsRepositories field_repositories;
+    private final FieldsRepositories service;
 
-    public FieldsServices(FieldsRepositories _repositories) {
-        this.field_repositories = _repositories;
+    FieldsServices(FieldsRepositories service) {
+        this.service = service;
     }
+
+   
 
     @Override
     public List<Fields> GetAllCurrentFields() {
 
-        return  field_repositories.findAll();
+        return  service.findAll();
     }
 
     @Override
     public List<Fields> SearchFieldByLocation(String location) {
-        return field_repositories.FilterByLocationField(location);
+        return service.FilterByLocationField(location);
     }
 
     @Override
@@ -37,7 +38,7 @@ public class FieldsServices implements IFields {
         try{
             if (field != null){
                 field.setId(UUID.randomUUID().toString());
-                field_repositories.save(field);
+                service.save(field);
                 return field;
             }
 
@@ -51,10 +52,10 @@ public class FieldsServices implements IFields {
 
         try{
 
-            if (field_repositories.existsById(update.getId())) {
-                field_repositories.save(update);
+            if (service.existsById(update.getId())) {
+                service.save(update);
                 return update;
-            } else if (!field_repositories.existsById(update.getId())) {
+            } else if (!service.existsById(update.getId())) {
                 return null;
             }else {
                 return null;
@@ -68,10 +69,10 @@ public class FieldsServices implements IFields {
     public String DeleteFieldSelected(String fieldId) {
 
         try{
-            if (field_repositories.existsById(fieldId)) {
-                field_repositories.deleteById(fieldId);
+            if (service.existsById(fieldId)) {
+                service.deleteById(fieldId);
                 return "Campo de futbol eliminado";
-            } else if (!field_repositories.existsById(fieldId)) {
+            } else if (!service.existsById(fieldId)) {
                 return "Campo de futbol no existe!";
             }else{
                 return "No se pudo eliminar o el campo no existe";
