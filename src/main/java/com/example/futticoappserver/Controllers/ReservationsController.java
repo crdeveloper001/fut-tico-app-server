@@ -19,7 +19,7 @@ import com.example.futticoappserver.Models.Reservations;
 import com.example.futticoappserver.Services.ReservationsServices;
 
 @RestController
-@CrossOrigin(origins = "*",allowedHeaders = "*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/v1/Reservations")
 public class ReservationsController {
      @Autowired

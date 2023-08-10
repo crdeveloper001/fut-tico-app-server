@@ -20,7 +20,7 @@ import com.example.futticoappserver.Models.Tournaments;
 import com.example.futticoappserver.Services.TournamentsServices;
 
 @RestController
-@CrossOrigin(origins = "*",allowedHeaders = "*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/v1/Tournaments")
 public class TournamentsController {
      @Autowired
@@ -45,8 +45,8 @@ public class TournamentsController {
         return tournaments_services.SearchTournamentsByAvailable(available);
     }
     @PostMapping("/NewTournament")
-    public Tournaments PostField(@RequestBody Tournaments reservation){
-        return tournaments_services.AddNewTournaments(reservation);
+    public Tournaments PostField(@RequestBody Tournaments tournament){
+        return tournaments_services.AddNewTournaments(tournament);
     }
     @PutMapping("/UpdateTournament")
     public Tournaments PutField(@RequestBody Tournaments update){

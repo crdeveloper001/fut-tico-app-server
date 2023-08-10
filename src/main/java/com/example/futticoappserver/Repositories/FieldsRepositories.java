@@ -4,10 +4,8 @@ import com.example.futticoappserver.Models.Fields;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
-@Repository
 public interface FieldsRepositories extends MongoRepository <Fields,String> {
     @Query("{fieldLocation:'?0'}")
     List<Fields> FilterByLocationField(String fieldLocation);
