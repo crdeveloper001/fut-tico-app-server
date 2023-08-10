@@ -13,13 +13,12 @@ import java.util.UUID;
 @Service
 public class FieldsServices implements IFields {
 
+    @Autowired
     private final FieldsRepositories service;
 
     FieldsServices(FieldsRepositories service) {
         this.service = service;
     }
-
-   
 
     @Override
     public List<Fields> GetAllCurrentFields() {
