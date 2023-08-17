@@ -24,5 +24,5 @@ public class Tournaments {
     private LocalDateTime tournamentEndDate;
     private String tournamentAvailable;
     private String tournamentUserId;
-   
+    private String tournamentOwnerId;
 }
