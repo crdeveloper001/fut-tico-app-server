@@ -20,6 +20,7 @@ public class Fields {
     private boolean fieldAvailable;
     private String fieldLocation;
     private String fieldDescription;
+    private String fieldPhotoURL;
     private String fieldOwnerId;
     
 

@@ -22,6 +22,7 @@ public class Reservations {
     private String reservationEmail;
     private String reservationFieldType;
     private String reservationGameType;
+    private Integer reservationNumberPlayers;
     private LocalDateTime reservationDate;
     private String reservationUserId;
     

@@ -22,6 +22,7 @@ public class UsersProfiles {
     private String userAccount;
     private String userAccountPassword;
     private String userRol;
+    private String userJwt;
     private boolean userActive;
 
 }
