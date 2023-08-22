@@ -23,11 +23,21 @@ public class AuthorizationController {
     @PostMapping({ "/AuthenticateProfile" })
     public ResponseEntity<?> PostUserAuth(@RequestBody UsersProfiles userAccount) {
 
-        if (userAccount.getUserAccount().equals("") || userAccount.getUserAccountPassword().equals("")) {
-            return new ResponseEntity<>("ACCOUNT OR PASSWORD FIELD ARE EMPTY", HttpStatus.NOT_FOUND);
-        } else {
-            return new ResponseEntity<>(authorization_Services.AuthorizeProfile(userAccount.getUserAccount(),
-                    userAccount.getUserAccountPassword()), HttpStatus.OK);
+        UsersProfiles payload = authorization_Services.AuthorizeProfile(userAccount.getUserAccount(),
+                userAccount.getUserAccountPassword());
+
+        switch (payload.getUserJwt()) {
+            case "ACCOUNT NAME DOES NOT MATCH OR PASSWORD INCORRECT":
+                return new ResponseEntity<>(payload, HttpStatus.NOT_FOUND);
+            case "ACCOUNT OR PASSWORD FIELD ARE EMPTY":
+                return new ResponseEntity<>(payload, HttpStatus.BAD_REQUEST);
+            case "AUTHORIZE":
+                return new ResponseEntity<>(payload, HttpStatus.OK);
+
+            default:
+                return new ResponseEntity<>("ERROR INSIDE SERVER, PLEASE WAIT A WHILE AND TRY AGAIN",
+                        HttpStatus.BAD_GATEWAY);
+
         }
 
     }

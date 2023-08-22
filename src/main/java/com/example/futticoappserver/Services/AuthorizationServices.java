@@ -40,7 +40,7 @@ public class AuthorizationServices implements IAuthorization {
                 UserPayload.setUserEmail(CurrentProfile.getUserEmail());
                 UserPayload.setUserAccount(CurrentProfile.getUserAccount());
                 UserPayload.setUserRol(CurrentProfile.getUserRol());
-                UserPayload.setUserJwt(CurrentProfile.getUserJwt());
+                UserPayload.setUserJwt("AUTHORIZE");
                 UserPayload.setUserActive(true);
                 return UserPayload;
 
