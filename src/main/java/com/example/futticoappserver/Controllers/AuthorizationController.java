@@ -24,10 +24,10 @@ public class AuthorizationController {
     public ResponseEntity<?> PostUserAuth(@RequestBody UsersProfiles userAccount) {
 
         if (userAccount.getUserAccount().equals("") || userAccount.getUserAccountPassword().equals("")) {
-            return new ResponseEntity<>("ACCOUNT OR PASSWORD FIELD ARE EMPTY", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("ACCOUNT OR PASSWORD FIELD ARE EMPTY", HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<>(authorization_Services.AuthorizeProfile(userAccount.getUserAccount(),
-                    userAccount.getUserAccountPassword()), HttpStatus.FOUND);
+                    userAccount.getUserAccountPassword()), HttpStatus.OK);
         }
 
     }
