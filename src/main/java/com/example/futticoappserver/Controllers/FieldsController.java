@@ -34,6 +34,14 @@ public class FieldsController {
         } 
          return new ResponseEntity<List<Fields>>(field_service.SearchFieldByLocation(location), HttpStatus.OK);
     };
+     @GetMapping("/SearchByGameType/{gameType}")
+    public ResponseEntity<List<Fields>> GetAllFieldsByGameType(@PathVariable("gameType") String gameType) {
+
+        if (field_service.SeachFieldByGameType(gameType).size() == 0) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        } 
+         return new ResponseEntity<List<Fields>>(field_service.SeachFieldByGameType(gameType), HttpStatus.OK);
+    };
 
     @PostMapping("/NewField")
     public Fields PostField(@RequestBody Fields field) {

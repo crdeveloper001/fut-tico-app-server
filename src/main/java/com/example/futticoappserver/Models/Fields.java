@@ -18,6 +18,7 @@ public class Fields {
     private String fieldName;
     private Integer fieldPhone;
     private boolean fieldAvailable;
+    private String fieldGameType;
     private String fieldLocation;
     private String fieldDescription;
     private String fieldPhotoURL;

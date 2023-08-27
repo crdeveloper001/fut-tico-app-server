@@ -23,7 +23,7 @@ public class FieldsServices implements IFields {
     @Override
     public List<Fields> GetAllCurrentFields() {
 
-        return  service.findAll();
+        return service.findAll();
     }
 
     @Override
@@ -32,34 +32,40 @@ public class FieldsServices implements IFields {
     }
 
     @Override
+    public List<Fields> SeachFieldByGameType(String gameType) {
+        return service.FilterByGameType(gameType);
+    }
+
+    @Override
     public Fields AddNewField(Fields field) {
 
-        try{
-            if (field != null){
+        try {
+            if (field != null) {
                 field.setId(UUID.randomUUID().toString());
                 service.save(field);
                 return field;
             }
 
             return null;
-        }catch (Exception error){
+        } catch (Exception error) {
             throw error;
         }
     }
+
     @Override
     public Fields UpdateCurrentField(Fields update) {
 
-        try{
+        try {
 
             if (service.existsById(update.getId())) {
                 service.save(update);
                 return update;
             } else if (!service.existsById(update.getId())) {
                 return null;
-            }else {
+            } else {
                 return null;
             }
-        }catch (Exception error){
+        } catch (Exception error) {
             throw error;
         }
     }
@@ -67,17 +73,18 @@ public class FieldsServices implements IFields {
     @Override
     public String DeleteFieldSelected(String fieldId) {
 
-        try{
+        try {
             if (service.existsById(fieldId)) {
                 service.deleteById(fieldId);
                 return "Campo de futbol eliminado";
             } else if (!service.existsById(fieldId)) {
                 return "Campo de futbol no existe!";
-            }else{
+            } else {
                 return "No se pudo eliminar o el campo no existe";
             }
-        }catch (Exception error){
+        } catch (Exception error) {
             return error.getMessage();
         }
     }
+
 }

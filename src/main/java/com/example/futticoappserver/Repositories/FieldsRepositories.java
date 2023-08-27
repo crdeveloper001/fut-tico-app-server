@@ -8,5 +8,7 @@ import java.util.List;
 public interface FieldsRepositories extends MongoRepository <Fields,String> {
     @Query("{fieldLocation:'?0'}")
     List<Fields> FilterByLocationField(String fieldLocation);
+      @Query("{fieldGameType:'?0'}")
+    List<Fields> FilterByGameType(String fieldGameType);
 
 }
