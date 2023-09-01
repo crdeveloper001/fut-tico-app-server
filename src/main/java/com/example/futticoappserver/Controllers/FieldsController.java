@@ -31,16 +31,26 @@ public class FieldsController {
 
         if (field_service.SearchFieldByLocation(location).size() == 0) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        } 
-         return new ResponseEntity<List<Fields>>(field_service.SearchFieldByLocation(location), HttpStatus.OK);
+        }
+        return new ResponseEntity<List<Fields>>(field_service.SearchFieldByLocation(location), HttpStatus.OK);
     };
-     @GetMapping("/SearchByGameType/{gameType}")
+
+    @GetMapping("/SearchByGameType/{gameType}")
     public ResponseEntity<List<Fields>> GetAllFieldsByGameType(@PathVariable("gameType") String gameType) {
 
-        if (field_service.SeachFieldByGameType(gameType).size() == 0) {
+        if (field_service.SearchFieldByGameType(gameType).size() == 0) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        } 
-         return new ResponseEntity<List<Fields>>(field_service.SeachFieldByGameType(gameType), HttpStatus.OK);
+        }
+        return new ResponseEntity<List<Fields>>(field_service.SearchFieldByGameType(gameType), HttpStatus.OK);
+    };
+
+    @GetMapping("/SearchByName/{fieldName}")
+    public ResponseEntity<?> GetAllFieldsByName(@PathVariable("fieldName") String fieldName) {
+
+        if (field_service.SearchFieldByName(fieldName).size() == 0) {
+            return new ResponseEntity<>("cancha no encontrada", HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<List<Fields>>(field_service.SearchFieldByName(fieldName), HttpStatus.OK);
     };
 
     @PostMapping("/NewField")

@@ -7,7 +7,8 @@ import java.util.List;
 public interface IFields {
 
     List<Fields> GetAllCurrentFields();
-    List<Fields> SeachFieldByGameType(String gameType);
+    List<Fields> SearchFieldByGameType(String gameType);
+    List<Fields> SearchFieldByName(String fieldName);
     List<Fields> SearchFieldByLocation(String location);
     Fields AddNewField(Fields field);
     Fields UpdateCurrentField(Fields update);

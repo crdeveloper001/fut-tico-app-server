@@ -7,6 +7,8 @@ import com.example.futticoappserver.Repositories.FieldsRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.Normalizer;
+import java.text.Normalizer.Form;
 import java.util.List;
 import java.util.UUID;
 
@@ -32,9 +34,15 @@ public class FieldsServices implements IFields {
     }
 
     @Override
-    public List<Fields> SeachFieldByGameType(String gameType) {
+    public List<Fields> SearchFieldByGameType(String gameType) {
         return service.FilterByGameType(gameType);
     }
+     @Override
+    public List<Fields> SearchFieldByName(String fieldName) {
+        String normalizedSearch = Normalizer.normalize(fieldName, Form.NFD);
+        return service.FilterByName(normalizedSearch);
+    }
+ 
 
     @Override
     public Fields AddNewField(Fields field) {
@@ -86,5 +94,7 @@ public class FieldsServices implements IFields {
             return error.getMessage();
         }
     }
+
+   
 
 }
