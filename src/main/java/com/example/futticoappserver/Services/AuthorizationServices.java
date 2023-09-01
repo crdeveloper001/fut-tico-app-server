@@ -26,7 +26,7 @@ public class AuthorizationServices implements IAuthorization {
             // a empty message with id of not found
             if (CurrentProfile == null) {
 
-                UserPayload.setUserJwt("ACCOUNT NAME DOES NOT MATCH OR PASSWORD INCORRECT");
+                UserPayload.setUserJwt("INVALIDE_ACCOUNT");
                 return UserPayload;
             }
             // compare account and password with the current profile found successfull

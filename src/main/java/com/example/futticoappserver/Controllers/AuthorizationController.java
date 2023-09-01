@@ -27,10 +27,8 @@ public class AuthorizationController {
                 userAccount.getUserAccountPassword());
 
         switch (payload.getUserJwt()) {
-            case "ACCOUNT NAME DOES NOT MATCH OR PASSWORD INCORRECT":
-                return new ResponseEntity<>(payload, HttpStatus.NOT_FOUND);
-            case "ACCOUNT OR PASSWORD FIELD ARE EMPTY":
-                return new ResponseEntity<>(payload, HttpStatus.BAD_REQUEST);
+            case "INVALIDE_ACCOUNT":
+                return new ResponseEntity<>(payload, HttpStatus.OK);
             case "AUTHORIZE":
                 return new ResponseEntity<>(payload, HttpStatus.OK);
 
