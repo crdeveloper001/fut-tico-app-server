@@ -16,10 +16,11 @@ public class AuthorizationServices implements IAuthorization {
     @Override
     public UsersProfiles AuthorizeProfile(String account, String password) {
         UsersProfiles UserPayload = new UsersProfiles();
-
+        UsersProfiles CurrentProfile = new UsersProfiles();
+        
         try {
             // buscar usuario especifico
-            UsersProfiles CurrentProfile = new UsersProfiles();
+
             CurrentProfile = usersRepositories.SearchUserProfileInformation(account);
 
             // If Current profile does not contain information from the search, will return
@@ -46,7 +47,7 @@ public class AuthorizationServices implements IAuthorization {
 
             }
 
-           UserPayload.setUserJwt("ACCOUNT NAME DOES NOT MATCH OR PASSWORD INCORRECT");
+            UserPayload.setUserJwt("ACCOUNT NAME DOES NOT MATCH OR PASSWORD INCORRECT");
             return UserPayload;
         } catch (Exception error) {
             throw error;

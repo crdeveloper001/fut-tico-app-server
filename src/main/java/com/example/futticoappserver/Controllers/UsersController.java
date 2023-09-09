@@ -43,8 +43,20 @@ public class UsersController {
     }
 
     @PostMapping("/NewUserProfile")
-    public UsersProfiles PostUser(@RequestBody UsersProfiles user) throws Exception {
-        return users_service.AddNewProfiles(user);
+    public ResponseEntity<?> PostUser(@RequestBody UsersProfiles user) throws Exception {
+
+        try {
+            if (user.getUserAccount() != "" || user.getUserRol() != "") {
+                return new ResponseEntity<>("REGISTERED", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("INFORMACION INVALIDA,VERIFIQUE LA INFORMACION ENVIADA",
+                        HttpStatus.BAD_REQUEST);
+            }
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 
     @PutMapping("/UpdateProfile")
