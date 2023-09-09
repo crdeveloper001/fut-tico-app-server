@@ -47,6 +47,7 @@ public class UsersController {
 
         try {
             if (user.getUserAccount() != "" || user.getUserRol() != "") {
+                users_service.AddNewProfiles(user);
                 return new ResponseEntity<>("REGISTERED", HttpStatus.OK);
             } else {
                 return new ResponseEntity<>("INFORMACION INVALIDA,VERIFIQUE LA INFORMACION ENVIADA",
