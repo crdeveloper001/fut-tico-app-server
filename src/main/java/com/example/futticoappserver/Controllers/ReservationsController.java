@@ -22,33 +22,43 @@ import com.example.futticoappserver.Services.ReservationsServices;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/v1/Reservations")
 public class ReservationsController {
-     @Autowired
+    @Autowired
     private ReservationsServices reservations_Services;
 
     @GetMapping("/GetAllReservations")
     @ResponseBody
-    public ResponseEntity<List<Reservations>> GetAllFields(){
+    public ResponseEntity<List<Reservations>> GetAllFields() {
         return new ResponseEntity<>(reservations_Services.GetAllCurrentReservation(), HttpStatus.OK);
 
     }
+
     @GetMapping("/SearchByGameType/{game}")
-    public List<Reservations> GetAllReservationsGameType(@PathVariable("game") String game){
+    public List<Reservations> GetAllReservationsGameType(@PathVariable("game") String game) {
         return reservations_Services.SearchReservationByFieldType(game);
     }
-      @GetMapping("/SearchByFieldType/{field}")
-    public List<Reservations> GetAllReservationsFieldType(@PathVariable("field") String field){
+
+    @GetMapping("/SearchByFieldType/{field}")
+    public List<Reservations> GetAllReservationsFieldType(@PathVariable("field") String field) {
         return reservations_Services.SearchReservationByFieldType(field);
     }
+
+    @GetMapping("/SearchByFieldUserId/{userId}")
+    public List<Reservations> GetAllReservationsForUser(@PathVariable("userId") String userId) {
+        return reservations_Services.SearchReservationByUserId(userId);
+    }
+
     @PostMapping("/NewReservation")
-    public Reservations PostField(@RequestBody Reservations reservation){
+    public Reservations PostField(@RequestBody Reservations reservation) {
         return reservations_Services.AddNewReservation(reservation);
     }
+
     @PutMapping("/UpdateReservation")
-    public Reservations PutField(@RequestBody Reservations update){
+    public Reservations PutField(@RequestBody Reservations update) {
         return reservations_Services.UpdateCurrentReservation(update);
     }
+
     @DeleteMapping("/DeleteReservation/{id}")
-    public String DeleteField(@PathVariable("id") String id){
+    public String DeleteField(@PathVariable("id") String id) {
         return reservations_Services.DeleteReservationSelected(id);
     }
 

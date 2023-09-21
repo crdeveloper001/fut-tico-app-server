@@ -8,6 +8,7 @@ public interface IReservations {
     List<Reservations> GetAllCurrentReservation();
     List<Reservations> SearchReservationByGameType(String game);
     List<Reservations> SearchReservationByFieldType(String field);
+    List<Reservations> SearchReservationByUserId(String reservationUserId);
     Reservations AddNewReservation(Reservations reservation);
     Reservations UpdateCurrentReservation(Reservations update);
     String DeleteReservationSelected(String reservationId);

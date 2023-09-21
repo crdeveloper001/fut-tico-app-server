@@ -5,7 +5,6 @@ import com.example.futticoappserver.Models.Reservations;
 import com.example.futticoappserver.Repositories.ReservationsRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.UUID;
 
@@ -28,6 +27,11 @@ public class ReservationsServices implements IReservations {
     @Override
     public List<Reservations> SearchReservationByFieldType(String field) {
         return reservationsRepositories.FilterByFieldType(field);
+    }
+
+    @Override
+    public List<Reservations> SearchReservationByUserId(String reservationUserId) {
+        return reservationsRepositories.FilterByCurrentUser(reservationUserId);
     }
 
     @Override
@@ -72,4 +76,5 @@ public class ReservationsServices implements IReservations {
             throw error;
         }
     }
+
 }

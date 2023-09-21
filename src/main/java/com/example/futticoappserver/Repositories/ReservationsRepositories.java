@@ -11,4 +11,6 @@ public interface ReservationsRepositories extends MongoRepository<Reservations,S
     List<Reservations> FilterByGameType(String reservationGameType);
     @Query("{reservationFieldType:'?0'}")
     List<Reservations> FilterByFieldType(String reservationFieldType);
+     @Query("{reservationUserId:'?0'}")
+    List<Reservations> FilterByCurrentUser(String reservationUserId);
 }
