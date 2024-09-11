@@ -26,6 +26,7 @@ public class FieldsController {
 
     }
 
+    @SuppressWarnings("null")
     @GetMapping("/SearchByLocation/{location}")
     public ResponseEntity<List<Fields>> GetAllFieldsLocation(@PathVariable("location") String location) {
 
@@ -35,6 +36,7 @@ public class FieldsController {
         return new ResponseEntity<List<Fields>>(field_service.SearchFieldByLocation(location), HttpStatus.OK);
     };
 
+    @SuppressWarnings("null")
     @GetMapping("/SearchByGameType/{gameType}")
     public ResponseEntity<List<Fields>> GetAllFieldsByGameType(@PathVariable("gameType") String gameType) {
 

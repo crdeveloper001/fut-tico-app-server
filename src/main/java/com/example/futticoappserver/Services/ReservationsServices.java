@@ -34,6 +34,7 @@ public class ReservationsServices implements IReservations {
         return reservationsRepositories.FilterByCurrentUser(reservationUserId);
     }
 
+    @SuppressWarnings("null")
     @Override
     public Reservations AddNewReservation(Reservations reservation) {
         try {
@@ -48,6 +49,7 @@ public class ReservationsServices implements IReservations {
         }
     }
 
+    @SuppressWarnings("null")
     @Override
     public Reservations UpdateCurrentReservation(Reservations update) {
         try {

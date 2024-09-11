@@ -32,6 +32,7 @@ public class UsersController {
 
     }
 
+    @SuppressWarnings("null")
     @GetMapping("/SearchByRolType/{rol}")
     public ResponseEntity<List<UsersProfiles>> GetAllUsersProfilesByRol(@PathVariable("rol") String rol) {
 
