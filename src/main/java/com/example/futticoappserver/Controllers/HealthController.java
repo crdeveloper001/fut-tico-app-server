@@ -21,7 +21,7 @@ public class HealthController {
         Map<String, Object> response = new HashMap<>();
         response.put("status", "UP");
         response.put("timestamp", LocalDateTime.now());
-        response.put("service", "TallerMecanico API");
+        response.put("service", "FUT TICO APP SERVER API");
         return new ResponseEntity<>(response, org.springframework.http.HttpStatus.OK);
     }
 }
