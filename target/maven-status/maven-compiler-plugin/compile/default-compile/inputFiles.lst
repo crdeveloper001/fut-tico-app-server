@@ -22,4 +22,5 @@
 /home/claudio-dev-pc/Documents/SOFTWARE APPS/WEB FULLSTACK/fut-app-reservations/fut-tico-app-server/src/main/java/com/example/futticoappserver/Repositories/AuthenticationRepositories.java
 /home/claudio-dev-pc/Documents/SOFTWARE APPS/WEB FULLSTACK/fut-app-reservations/fut-tico-app-server/src/main/java/com/example/futticoappserver/Models/Tournaments.java
 /home/claudio-dev-pc/Documents/SOFTWARE APPS/WEB FULLSTACK/fut-app-reservations/fut-tico-app-server/src/main/java/com/example/futticoappserver/Controllers/AuthorizationController.java
+/home/claudio-dev-pc/Documents/SOFTWARE APPS/WEB FULLSTACK/fut-app-reservations/fut-tico-app-server/src/main/java/com/example/futticoappserver/Controllers/HealthController.java
 /home/claudio-dev-pc/Documents/SOFTWARE APPS/WEB FULLSTACK/fut-app-reservations/fut-tico-app-server/src/main/java/com/example/futticoappserver/FutTicoAppServerApplication.java
